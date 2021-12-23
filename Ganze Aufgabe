@@ -1,0 +1,35 @@
+# Schritte 1
+import pandas as pd
+
+# Schritte 2 und 3
+baby_names = pd.read_csv('https://raw.githubusercontent.com/guipsamora/pandas_exercises/master/06_Stats/US_Baby_Names/US_Baby_Names_right.csv') 
+
+# Schritte 4
+baby_names_f = baby_names.head(10)
+print(baby_names_f)
+
+# Schritte 5
+baby_names.drop(['Unnamed: 0', 'Id'], axis=1).head()
+
+# Schritte 6
+F = baby_names['Gender'].tolist()
+n, m = 0, 0
+for i in range(len(baby_names)):
+  if F[i] == 'F':
+    n+=1
+  else:
+    n-=1
+    m+=1
+if n>0:
+  print('В наборе больше женских имен на:', n)
+else:
+  print('В наборе больше мужских имен на:', m)
+
+# Schritte 7
+Best_name = baby_names['Name'].mode()
+j= baby_names['Name'].value_counts()
+print('Наиболее часто встречаемое имя:', Best_name[0])
+print('Оно встречается', j[0], 'раз')
+
+#Schritte 8
+print('Количество разных имен в наборе данных равно:', len(baby_names['Name'].value_counts()))
